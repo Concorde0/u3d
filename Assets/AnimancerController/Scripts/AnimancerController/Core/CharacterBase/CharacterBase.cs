@@ -1,8 +1,9 @@
 ﻿using System;
+using Mirror;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator),typeof(CharacterController))]
-public class CharacterBase : MonoBehaviour
+public class CharacterBase : NetworkBehaviour
 {
     public CharacterController controller { get; private set; }
     public  Animator animator { get; private set; }
@@ -38,6 +39,7 @@ public class CharacterBase : MonoBehaviour
     }
     protected virtual void Update()
     {
+        if(!isLocalPlayer) return;
         CheckOnGround();
         CharacterGravity();
         CharacterVerticalVelocity();

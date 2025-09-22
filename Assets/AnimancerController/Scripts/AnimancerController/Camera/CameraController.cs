@@ -2,11 +2,6 @@ using Cinemachine;
 using System;
 using UnityEngine;
 using UnityEngine.Playables;
-/**************************************************************************
-作者: HuHu
-邮箱: 3112891874@qq.com
-功能: 依赖虚拟相机，用于平滑控制相机距离
-**************************************************************************/
 
 public class CameraController : MonoBehaviour
 {
@@ -34,27 +29,26 @@ public class CameraController : MonoBehaviour
   
     private void Update()
     {
-        GetMouseScroll();
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        // GetMouseScroll();
+        // Cursor.lockState = CursorLockMode.Locked;
+        // Cursor.visible = false;
     }
     private void LateUpdate()
     {
         UpdateCameraDistance();
     }
 
-    private void GetMouseScroll()
-    {
-        currentDistance -= inputService.inputMap.Player.Scroll.ReadValue<Vector2>().y * Time.deltaTime* sensitivity;
-        currentDistance = Mathf.Clamp(currentDistance, minDistance, maxDistance);
-    }
+    // private void GetMouseScroll()
+    // {
+    //     currentDistance -= inputService.inputMap.Player.Scroll.ReadValue<Vector2>().y * Time.deltaTime* sensitivity;
+    //     currentDistance = Mathf.Clamp(currentDistance, minDistance, maxDistance);
+    // }
     private void UpdateCameraDistance()
     {
         if (playableDirector!=null)
         {
             if (playableDirector?.state == PlayState.Playing)
             {
-                // 如果正在播放，跳过更新 m_CameraDistance
                 return;
             }
         }

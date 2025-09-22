@@ -2,14 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-/**************************************************************************
-作者: HuHu
-邮箱: 3112891874@qq.com
-功能: 有限状态机，缓存状态，驱动更新状态类
-**************************************************************************/
+
 public class PlayerStateMachine : StateMachineBase
 {
-   //缓存状态
     public Player player;
     public PlayerIdleState idleState;
     public PlayerMoveStartState moveStartState;

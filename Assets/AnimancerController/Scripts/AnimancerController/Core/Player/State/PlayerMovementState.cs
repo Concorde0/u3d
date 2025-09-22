@@ -7,7 +7,6 @@ public class PlayerMovementState : StateBase
 {
     protected PlayerStateMachine playerStateMachine;
     protected PlayerSO playerSO;
-    //ÊôÐÔ±äÁ¿
     public PlayerMovementState(PlayerStateMachine stateMachine) : base(stateMachine.player)
     {
         playerStateMachine = stateMachine;
@@ -17,7 +16,7 @@ public class PlayerMovementState : StateBase
     {
         AddEventListening();
     }
-    protected override void AddEventListening()//×¢²áµÄË³ÐòÒ²¾ö¶¨ÁËÓÅÏÈ¼¶
+    protected override void AddEventListening()//×¢ï¿½ï¿½ï¿½Ë³ï¿½ï¿½Ò²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¼ï¿½
     {
         inputServer.inputMap.Player.Lock.started += OnLock;
     }
@@ -34,14 +33,11 @@ public class PlayerMovementState : StateBase
 
     public override void OnUpdate()
     {
-        //´¦ÀíË÷µÐ
         if (reusableData.lockValueParameter.TargetValue == 1)
         {
             UpdateLockRotation(5,null);
-            //¸üÐÂ²ÎÊý£º
             UpdateLockValue();
         }
-        //´¦Àí´ò¶ÏÎ¯ÍÐ
         reusableData.inputInterruptionCB?.Invoke();
     }
 
@@ -131,13 +127,9 @@ public class PlayerMovementState : StateBase
     {
         return Quaternion.Euler(0, cam.eulerAngles.y, 0) * new Vector3(inputServer.Move.x, 0, inputServer.Move.y);
     }
-
-    /// <summary>
-    /// ¼ì²âÊÇ·ñÓÐÊäÈë´ò¶Ï£¨ÊÂ¼þ´ò¶Ï£©
-    /// </summary>
+    
     protected virtual void OnInputInterruption()
     {
-        Debug.Log("Ìí¼Ó´ò¶Ï¼ì²â");
         reusableData.inputInterruptionCB = () =>
             {
                 if (inputServer.Move != Vector2.zero)
@@ -204,30 +196,20 @@ public class PlayerMovementState : StateBase
             return;
         }
         reusableData.horizontalSpeed = Mathf.Lerp(reusableData.horizontalSpeed, inputServer.Move != Vector2.zero ? 2 : 0, 1 - Mathf.Exp(-8 * Time.deltaTime));
-        if (reusableData.lockValueParameter.TargetValue == 1)//Ë÷µÐ
+        if (reusableData.lockValueParameter.TargetValue == 1)//ï¿½ï¿½ï¿½ï¿½
         {
-            //¿ØÖÆË®Æ½ÒÆ¶¯
             player.AddHorizontalVelocityInAir(GetTargetDir() * reusableData.horizontalSpeed*reusableData.currentMidInAirMultiplier+reusableData.currentInertialVelocity/Time.deltaTime);
         }
         else
         {
-            //¿ØÖÆË®Æ½ÒÆ¶¯
             player.AddHorizontalVelocityInAir(player.transform.forward * reusableData.horizontalSpeed*reusableData.currentMidInAirMultiplier +reusableData.currentInertialVelocity / Time.deltaTime);
         }
     }
-    /// <summary>
-    /// ÔÚµØÃæÊ±Ë¢ÐÂ
-    /// </summary>
-    /// <param name="horizontalSpeed"></param>
     public void UpdateCashVelocity(Vector3 horizontalSpeed)
     {
         reusableData.cashIndex = (reusableData.cashIndex + 1) % PlayerReusableData.cashSize;
         reusableData.cashVelocity[reusableData.cashIndex] = horizontalSpeed;
     }
-    /// <summary>
-    /// Àë¿ªµØÃæÊ±»ñÈ¡
-    /// </summary>
-    /// <returns></returns>
     public Vector3 GetInertialVelocity()
     {
         Vector3 inertialVelocity = Vector3.zero;
@@ -237,10 +219,7 @@ public class PlayerMovementState : StateBase
         }
         return inertialVelocity / reusableData.cashVelocity.Length;
     }
-
-    /// <summary>
-    /// Ä¬ÈÏ²¥·ÅIdle
-    /// </summary>
+    
     protected void OnStateDefaultEnd()
     {
         playerStateMachine.ChangeState(playerStateMachine.idleState);

@@ -11,11 +11,6 @@ public enum ClimbType
 {
     Vault,Climb
 }
-public enum MatchType
-{
-    Root,
-    RootY,
-}
 public struct ClimbTargetMatchInfo
 {
    public Vector3 TargetPos;//爬上去的目标位置
@@ -30,11 +25,7 @@ public struct ClimbTargetMatchInfo
         setTargetMatchInitPos = false;
     }
 }
-/**************************************************************************
-作者: HuHu
-邮箱: 3112891874@qq.com
-功能: 可变数据复用类，缓存可读可写数据
-**************************************************************************/
+
 
 public class PlayerReusableData
 {
@@ -66,7 +57,6 @@ public class PlayerReusableData
     //攀爬
     public ObstructHeight ObstructHeight;
     public ClimbType ClimbType;
-    public ClipTransition targetClimbClip;
     //跳跃
     public float horizontalSpeed;
     //跳跃惯性
@@ -76,7 +66,6 @@ public class PlayerReusableData
     public Vector3[] cashVelocity = new Vector3[cashSize];
 
     //HangWall
-    public float originalCCRadius;
     public Vector3 vaultPos;
     public RaycastHit hit;
     //打断点检测事件
@@ -88,7 +77,7 @@ public class PlayerReusableData
     //外力跳跃
     public float jumpExternalForce = 15;
 
-    //
+    
     public float currentMidInAirMultiplier = 0.6f;
     public PlayerReusableData(AnimancerComponent animancerComponent, PlayerSO playerSO)
     {

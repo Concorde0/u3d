@@ -1,10 +1,5 @@
 using System.Collections;
 using UnityEngine;
-/*************************************************
-作者: HuHu
-邮箱: 3112891874@qq.com
-功能: 平台跳跃交互
-*************************************************/
 
 public class PlatformerUp :MonoBehaviour
 {

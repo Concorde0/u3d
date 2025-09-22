@@ -1,11 +1,6 @@
 ﻿using Animancer;
 using System;
 using UnityEngine;
-/**************************************************************************
-作者: HuHu
-邮箱: 3112891874@qq.com
-功能: 逻辑算法复用类
-**************************************************************************/
 public class PlayerReusableLogic
 {
     Player player { get; set; }

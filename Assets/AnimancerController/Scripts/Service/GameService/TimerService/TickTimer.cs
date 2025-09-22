@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Concurrent;
 using System.Threading;
-//ºÁÃë¼¶¶¨Ê±Æ÷
 public class TickTimer : GameTimerBase
 {
     class TaskCBPack
@@ -48,7 +47,7 @@ public class TickTimer : GameTimerBase
                 }
             }
             thread = new Thread(new ThreadStart(StartTime));
-            thread.Start(); // Æô¶¯Ïß³Ì
+            thread.Start(); // ï¿½ï¿½ï¿½ï¿½ï¿½ß³ï¿½
         }
     }
 

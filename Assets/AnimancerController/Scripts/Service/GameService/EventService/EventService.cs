@@ -1,12 +1,12 @@
 using System;
-public enum EventID//这里添加事件ID
+public enum EventID//锟斤拷锟斤拷锟斤拷锟斤拷锟铰硷拷ID
 {
     OnDoneStateUIInit
 }
 /**************************************************************************
-作者: HuHu
-邮箱: 3112891874@qq.com
-功能: 事件系统
+锟斤拷锟斤拷: HuHu
+锟斤拷锟斤拷: 3112891874@qq.com
+锟斤拷锟斤拷: 锟铰硷拷系统
 **************************************************************************/
 
 public class EventService : MonoSingleton<EventService>
@@ -28,7 +28,7 @@ public class EventService : MonoSingleton<EventService>
         EventHandler = null;
     }
     /// <summary>
-    /// 添加事件，参数超过2个的，封装个类传递参数
+    /// 锟斤拷锟斤拷锟铰硷拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷2锟斤拷锟侥ｏ拷锟斤拷装锟斤拷锟洁传锟捷诧拷锟斤拷
     /// </summary>
     /// <param name="eventID"></param>
     /// <param name="action"></param>
@@ -37,7 +37,7 @@ public class EventService : MonoSingleton<EventService>
         EventHandler.AddEventListening(eventID, action);
     }
     /// <summary>
-    /// 通过ID注销某一类事件：这会将所有地方注册的该类事件都给注销
+    /// 通锟斤拷ID注锟斤拷某一锟斤拷锟铰硷拷锟斤拷锟斤拷峤拷锟斤拷械胤锟阶拷锟侥革拷锟斤拷锟铰硷拷锟斤拷锟斤拷注锟斤拷
     /// </summary>
     /// <param name="eventID"></param>
     public void RemoveEventListeningByID(EventID eventID)
@@ -45,7 +45,7 @@ public class EventService : MonoSingleton<EventService>
         EventHandler.RemoveEventListeningByID(eventID);
     }
     /// <summary>
-    /// 清除该对象所有注册的事件
+    /// 锟斤拷锟斤拷枚锟斤拷锟斤拷锟斤拷锟阶拷锟斤拷锟铰硷拷
     /// </summary>
     /// <param name="target"></param>
     public void RemoveEventListeningByTarget(object target)
@@ -53,7 +53,7 @@ public class EventService : MonoSingleton<EventService>
         EventHandler.RemoveEventListeningByTarget(target);
     }
     /// <summary>
-    /// 立即处理事件
+    /// 锟斤拷锟斤拷锟斤拷锟斤拷锟铰硷拷
     /// </summary>
     /// <param name="eventID"></param>
     /// <param name="param1"></param>
@@ -63,7 +63,7 @@ public class EventService : MonoSingleton<EventService>
         EventHandler.SentMessage(eventID, param1, param2);
     }
     /// <summary>
-    /// 分帧处理事件
+    /// 锟斤拷帧锟斤拷锟斤拷锟铰硷拷
     /// </summary>
     /// <param name="eventID"></param>
     /// <param name="param1"></param>

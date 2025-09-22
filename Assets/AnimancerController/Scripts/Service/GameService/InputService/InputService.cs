@@ -1,11 +1,7 @@
 
 
+using System;
 using UnityEngine;
-/**************************************************************************
-作者: HuHu
-邮箱: 3112891874@qq.com
-功能: 玩家输入控制类，基于InputSystem
-**************************************************************************/
 public class InputService : MonoSingleton<InputService>
 {
     public InputMap inputMap;
@@ -16,24 +12,24 @@ public class InputService : MonoSingleton<InputService>
         {
             inputMap = new InputMap();
         }
+
+        
         inputMap.Enable();
     }
     private void OnDestroy()
     {
         inputMap.Disable();
     }
+    
 
-    /// <summary>
-    /// 封装走和跑以及PC和安卓的区别的移动量
-    /// </summary>
+
     public Vector2 GetMoveHorizontalValue
     {
         get
         {
-            //安卓
 #if UNITY_ANDROID
                 return inputMap.Player.Move.ReadValue<Vector2>();
-            //非安卓
+            //锟角帮拷卓
 #elif !UNITY_ANDROID
             Vector2 dir = inputMap.Player.Move.ReadValue<Vector2>();
             bool isShift = inputMap.Player.Shift.ReadValue<float>()!=0;
@@ -53,7 +49,7 @@ public class InputService : MonoSingleton<InputService>
                 return Vector2.zero;
             }
 #else
-                return 0f; // 默认值
+                return 0f; // 默锟斤拷值
 #endif
         }
     }

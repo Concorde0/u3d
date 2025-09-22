@@ -1,18 +1,15 @@
 using Animancer;
 using Animancer.Units;
+using Mirror;
 using UnityEngine;
-/**************************************************************************
-◊˜’ﬂ: HuHu
-” œ‰: 3112891874@qq.com
-π¶ƒ‹: Ω≈≤øIK
-**************************************************************************/
-public class RaycastFootIK : MonoBehaviour
+
+public class RaycastFootIK : NetworkBehaviour
 {
   
-    [SerializeField,Header(" «∑Òø™∆Ù")] private bool enable = true;
+    [SerializeField,Header("ÊòØÂê¶ÂºÄÂêØ")] private bool enable = true;
     [SerializeField] private AnimancerComponent _Animancer;
-    [SerializeField,Header("ºÏ≤‚∆µ„"), Meters] private float _RaycastOriginY = 0.1f;
-    [SerializeField,Header("ºÏ≤‚÷’µ„"), Meters] private float _RaycastEndY = -0.2f;
+    [SerializeField,Header("Ê£ÄÊµãËµ∑ÁÇπ"), Meters] private float _RaycastOriginY = 0.1f;
+    [SerializeField,Header("Ê£ÄÊµãÁªàÁÇπ"), Meters] private float _RaycastEndY = -0.2f;
     [SerializeField] private float _ForwardOffset = 0;
     [SerializeField] LayerMask whatIsGround;
   
@@ -46,7 +43,6 @@ public class RaycastFootIK : MonoBehaviour
 
     private void OnEnableChange(bool obj)
     {
-        Debug.Log("ø™∆ÙΩ≈≤øIK" + obj);
         ApplyAnimatorIK = obj;
     }
 
@@ -74,13 +70,10 @@ public class RaycastFootIK : MonoBehaviour
 
     private void Update()
     {
+        if(!isLocalPlayer) return;
         Enable.Value = enable;
     }
-    private void UpdateFootIK(
-            Transform footTransform,
-            AvatarIKGoal goal,
-            float weight,
-            float footBottomHeight)
+    private void UpdateFootIK(Transform footTransform, AvatarIKGoal goal, float weight, float footBottomHeight)
     {
         Animator animator = _Animancer.Animator;
         animator.SetIKPositionWeight(goal, weight);
@@ -96,8 +89,7 @@ public class RaycastFootIK : MonoBehaviour
         position += LocalForward * _ForwardOffset;
 
         float distance = _RaycastOriginY - _RaycastEndY;
-
-        // ªÊ÷∆…‰œﬂ£®‘⁄Scene ”Õº÷–ø…º˚£©
+        
         Debug.DrawRay(position, -localUp * distance, Color.red);
 
         if (Physics.Raycast(position, -localUp, out RaycastHit hit, distance, whatIsGround))
